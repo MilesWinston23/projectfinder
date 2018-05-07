@@ -8,12 +8,18 @@
 </head>
 <body>
   <nav class="navbar navbar-light bg-light justify-content-between">
-    <a class="navbar-brand">Project Finder</a>
-    <form class="form-inline">
+    
+    <a class="navbar-brand" href="http://projectfinder-mileswinston23.c9users.io">Project Finder</a>
+    
+    <form class="form-inline" id="Search">
+      
+    <%= link_to "Advanced Search", new_search_path, :style => "margin-right: 20px" %>
+    
     <%= form_tag posts_path, :method => 'get' do %>
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search" %>
     <% end %>
+    
   </form>
 </nav>
 

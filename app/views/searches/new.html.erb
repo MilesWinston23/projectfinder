@@ -1,0 +1,14 @@
+<h1>Advanced Search</h1>
+
+<%= form_for @search, html: {class: "pure-form"} do |f| %>
+
+    <div class="field">
+        <%= f.label :category %><br />
+        <%= f.select :category, options_for_select(@categories) %> 
+    </div>
+
+    <div class="actions"><%= f.submit "Search", class: "pure-button pure-button-primary" %></div>
+    
+    <% end %>
+    
+    <p><%= link_to "Back", posts_path %></p>
