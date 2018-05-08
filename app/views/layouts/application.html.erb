@@ -11,6 +11,11 @@
     
     <a class="navbar-brand" href="http://projectfinder-mileswinston23.c9users.io">Project Finder</a>
     
+      <%= link_to "Sign In", "http://projectfinder-mileswinston23.c9users.io/users/sign_in" %>
+      <%= link_to "Sign Up", "http://projectfinder-mileswinston23.c9users.io/users/sign_up" %>
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+    
     <form class="form-inline" id="Search">
       
     <%= link_to "Advanced Search", new_search_path, :style => "margin-right: 20px" %>
@@ -19,7 +24,7 @@
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search" %>
     <% end %>
-    
+
   </form>
 </nav>
 

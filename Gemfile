@@ -24,6 +24,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Bootstrap gem
 gem 'bootstrap', '~> 4.1.1'
+#Reputation System
+gem 'activerecord-reputation-system'
+#Users
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -2,9 +2,18 @@ Rails.application.routes.draw do
   
   root "posts#index"
   
-  resources :searches
-  resources :posts
+  devise_for :users
+  resources :users
   
+  resources :searches
+  
+  resources :posts do
+    resources :comments
+  end 
+  
+  resources :comments do
+    resources :comments
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
