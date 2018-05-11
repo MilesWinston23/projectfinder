@@ -1,14 +1,18 @@
-<li>
-  <%= comment.body %> -
-  <small>Submitted <%= time_ago_in_words(comment.created_at) %> ago</small>
-
-  <%= form_for [comment, Comment.new] do |f| %>
+<div class="comment">
+<div class="media mb-4">
+  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+    <div class="media-body">
+      <h5 class="mt-0"><%= comment.user_id %> - Submitted <%= time_ago_in_words(comment.created_at) %> ago</h5>
+        <%= comment.body %> 
+    </div>
+  </div>
+  </div>
+  <hr>
+    <%= form_for [comment, Comment.new] do |f| %>
       <%= f.text_area :body, placeholder: "Add a Reply" %><br/>
-      <%= f.submit "Reply"  %>
+      <%= f.submit "Reply", :class => "btn btn-primary btn-sm" %>
+      <%= link_to "Delete", [@post, comment], method: :delete, :class => "btn btn-primary btn-sm" %>
       <% end %>
-
   <ul>
-      <%= render partial: 'comments/comment', collection: comment.comments %>
+    <%= render partial: 'comments/comment', collection: comment.comments %>
   </ul>
-
-</li>

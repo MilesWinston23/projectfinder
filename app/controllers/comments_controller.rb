@@ -6,10 +6,8 @@ class CommentsController < ApplicationController
     end
 
     def create
-      @post = Post.find(params[:post_id])
-      
       if user_signed_in?
-      @comment = @commentable.comments.new(comment_params)
+      @comment = @commentable.comments.new comment_params
       @comment.user_id=current_user.id if current_user
       @comment.save
         redirect_to :back, notice: 'Your comment was successfully posted!'
@@ -33,11 +31,10 @@ class CommentsController < ApplicationController
     end
     
     def destroy
-      @post = Post.find(params[:post_id])
-      @comment = @post.comments.find(params[:id])
+      @comment = Comment.find(params[:id])
       @comment.destroy
     
-      redirect_to post_path(@post)
+      redirect_to :back
     end
 
     private
