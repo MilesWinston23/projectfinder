@@ -1,48 +1,53 @@
-<div class="container">
-<div class="post">
+
+<div class="row" id="post-comments">
+<div class="col-lg-8">
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
+<!-- POST INFORMATION -->
+<h1 class="mt-4"><%= @post.title %></h1>
+<!--TITLE-->
+<p class="lead">by <%= @post.user_id %>
 </p>
-
+<!--IMAGE-->
+<img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+<hr>
+<!--BODY-->
+<p>
+<%= simple_format(@post.body) %>
+</p>
+<hr>
+<!--POSTED AT-->
+<p><strong>Posted at:</strong>
+<%= time_ago_in_words(@post.created_at) %></p>
+<hr>
+<!--CATEGORY-->
 <p>
   <strong>Category:</strong>
   <%= @post.category %>
 </p>
+<!-- POST INFORMATION -->
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<p>
-  <strong>Posted at:</strong>
-  <%= time_ago_in_words(@post.created_at) %>
-</p>
-
-<p>
-  <strong>Posted by:</strong>
-  <%= @post.user_id %>
-</p>
-
+<!-- IF USER IS SIGNED IN, LET USER EDIT POST -->
 <% if user_signed_in? && @post.user_id == current_user.id %>
-
 <%= link_to 'Edit', edit_post_path(@post) %> |
-
 <% end %>
+<!-- IF USER IS SIGNED IN, LET USER EDIT POST -->
 
 <%= link_to 'Back', posts_path %>
-</div>
 
-<div class="add-comment">
-<h3>Comments</h3>
-<%= form_for [@post, Comment.new] do |f| %>
-<%= f.text_area :body, placeholder: "Add a comment" %><br/>
-<%= f.submit "Add Comment" %>
-<% end %>
-  <%= render(partial: 'comments/comment', collection: @post.comments) %>
-</ul>
+<!-- LEAVE A COMMENT BOX -->
+<div class="card my-4">
+ <h5 class="card-header">Leave a Comment:</h5><%= form_for [@post, Comment.new] do |f| %>
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+      <%= f.text_area :body, placeholder: "Add a comment", :class => "form-control", :rows => "3" %><br />
+      </div><%= f.submit "Add Comment", :class => "btn btn-primary" %><% end %>
+    </form>
+  </div>
+</div>
+<%= render(partial: 'comments/comment', collection: @post.comments) %>
+<!-- LEAVE A COMMENT BOX -->
+
 </div>
 </div>

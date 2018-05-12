@@ -9,7 +9,7 @@
   </div>
   <hr>
     <%= form_for [comment, Comment.new] do |f| %>
-      <%= f.text_area :body, placeholder: "Add a Reply" %><br/>
+      <%= f.text_area :body, placeholder: "Add a Reply", :class => "form-control" %><br/>
       <%= f.submit "Reply", :class => "btn btn-primary btn-sm" %>
       <%= link_to "Delete", [@post, comment], method: :delete, :class => "btn btn-primary btn-sm" %>
       <% end %>

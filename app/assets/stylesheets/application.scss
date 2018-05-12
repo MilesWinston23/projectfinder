@@ -14,3 +14,16 @@
  *= require_self
  */
 @import "bootstrap";
+
+.rightcolumn {
+    float: right;
+    padding: 0px 10px 0px 0px;
+    width: 25%;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
