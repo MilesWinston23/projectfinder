@@ -23,7 +23,7 @@
         <td><%= link_to post.title, post %></td>
         <td><%= post.category %></td>
         <td><%= post.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
-        <td><%= post.user_id %></td>
+        <td><%= post.user.Username %></td>
         <td>
           <em><%= pluralize post.reputation_for(:votes).to_i, "vote" %>
             <span><%= link_to "| up |", vote_post_path(post, type: "up"), method: "post" %></span>
@@ -42,8 +42,6 @@
 </table>
 <br>
 
-
-<%= link_to 'New Post', new_post_path %>
 </div>
 </div>
 

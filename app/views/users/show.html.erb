@@ -1,24 +1,43 @@
 <div class="container">
     <div class="profile">
         <div class="row">
-            <div class="column-md-4">
+            <div class="column-md-4" id="followers">
                 <h3>Followers</h3>
             </div>
-            <div class="column-md-4">
-                <h3>Username: <%= current_user.Username %></h3>
-                <h3>Email: <%= current_user.email %></h3>
-                <h3>Education: <%= current_user.Education %></h3>
-                <h3>Profession: <%= current_user.Profession %></h3>
-                <h3>Location: <%= current_user.Location %></h3>
-                <h3>Biography: <%= current_user.Bio %></h3>
+            <div class="column-md-4" id="profile">
+            <div class="card">
+                <%= image_tag "placehold.gif", :class => "card-img-top", :size => '200x200' %>
+                <div class="card-body">
+                <h5 class="card-title"><%= @user.Username %></h5>
+                <p class="card-text"><%= @user.Bio %></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">Email: <%= mail_to @user.email %></li>
+                <li class="list-group-item">Education: <%= @user.Education %></li>
+                <li class="list-group-item">Profession: <%= @user.Profession %></li>
+                <li class="list-group-item">Location: <%= @user.Location %></li>
+                </div>
             </div>
-            <div class="colum-md-4">
-            <h1>Users Posts: </h1>
+            <div class="column-md-4" id="recent-user-posts">
+            <div class="card" style="width: 18rem;">
+            <div class="card-title">
+                Recently Posted
+            </div>
+            <ul class="list-group list-group-flush">
             <% @user_post.each do |post| %> 
-                <h3><%= post.title %></h3>
-                <%= link_to 'Edit', edit_post_path(post) %>
-                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
+                    <li class="list-group-item"><%= link_to post.title, post_path(post.id) %>
+                    <%= time_ago_in_words(post.created_at) %> ago
+     
+                    <% if user_signed_in? && post.user_id == current_user.id %>
+                    <br>
+                    <%= link_to 'Edit', edit_post_path(post) %>
+                    <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>    
+                    
+                    <% end %>
+                    </li>
+                    <% end %>
+                  </ul>
+                </div>
             </div>
         </div>
     </div>
