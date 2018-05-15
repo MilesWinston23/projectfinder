@@ -1,20 +1,45 @@
-  <nav class="navbar navbar-light bg-light justify-content-between">
-    
-    <a class="navbar-brand" href="http://projectfinder-mileswinston23.c9users.io">Project Finder</a>
-    
-      <%= link_to "Sign In", "http://projectfinder-mileswinston23.c9users.io/users/sign_in" %>
-      <%= link_to "Sign Up", "http://projectfinder-mileswinston23.c9users.io/users/sign_up" %>
-      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    
-    <form class="form-inline" id="Search">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="http://projectfinder-mileswinston23.c9users.io">Home <span class="sr-only">(current)</span></a>
+      </li>
       
-    <%= link_to "Advanced Search", new_search_path, :style => "margin-right: 20px" %>
-    
+      <% if !user_signed_in? %>
+      
+      <li class="nav-item">
+        <a><%= link_to "Sign In", "http://projectfinder-mileswinston23.c9users.io/users/sign_in", :class => "nav-link" %></a>
+      </li>
+      
+      <% else %>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="https://projectfinder-mileswinston23.c9users.io/users/<%= current_user.id %>">My Profile</a>
+          <a><%= link_to 'Create Post', new_post_path, :class => "dropdown-item" %></a>
+          <a class="dropdown-item" href="https://projectfinder-mileswinston23.c9users.io/users/edit">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "dropdown-item" %></a>
+        </div>
+      </li>
+      
+      <% end %>
+    </ul>
+    <!--SEARCH-->
+    <%= link_to "Advanced Search", new_search_path, :class => "nav-link" %>
     <%= form_tag posts_path, :method => 'get' do %>
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search" %>
     <% end %>
-
-  </form>
-</nav>
+    <!--SEARCH-->
+  </div>
+</nav>  
+  

@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       @comment.save
         redirect_to :back, notice: 'Your comment was successfully posted!'
       else
-        redirect_to :back, notice: "Your comment wasn't posted! Please sign in!"
+        redirect_to '/users/sign_in', notice: "Your comment wasn't posted! Please sign in!"
       end
     end
     
