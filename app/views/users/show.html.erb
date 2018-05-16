@@ -11,7 +11,13 @@
                   <% for friendship in @user.friendships %>
                     <li class="list-item">
                       <%=h link_to friendship.friend.Username, user_path(friendship.friend.id) %>
+                      
+                      <% if user_signed_in? && @user.id == current_user.id %>
+                      
                       (<%= link_to "remove", friendship, :method => :delete %>)
+                      
+                      <% end %>
+                      
                     </li>
                   <% end %>
                 </ul>
@@ -44,7 +50,13 @@
                 <li class="list-group-item">Education: <%= @user.Education %></li>
                 <li class="list-group-item">Profession: <%= @user.Profession %></li>
                 <li class="list-group-item">Location: <%= @user.Location %></li>
+                
+                 <% if user_signed_in? && @user.id != current_user.id %>
+ 
                 <li class="list-group-item"><%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %></li>
+                
+                <% end %>
+                
                 </ul>
                 </div>
             </div>

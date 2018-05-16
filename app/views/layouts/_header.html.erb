@@ -30,9 +30,16 @@
           <a><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "dropdown-item" %></a>
         </div>
       </li>
-      
       <% end %>
+      
+      <li class="nav-item">
+        <a class="nav-link disabled" style="color: green;">Online: <%= current_user.Username %></a>
+      </li>
+      
     </ul>
+    
+    
+    
     <!--SEARCH-->
     <%= link_to "Advanced Search", new_search_path, :class => "nav-link" %>
     <%= form_tag posts_path, :method => 'get' do %>
