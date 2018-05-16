@@ -36,16 +36,18 @@
 <%= link_to 'Back', posts_path %>
 
 <!-- LEAVE A COMMENT BOX -->
-<div class="card my-4">
+<div class="reply">
  <h5 class="card-header">Leave a Comment:</h5><%= form_for [@post, Comment.new] do |f| %>
   <div class="card-body">
     <form>
       <div class="form-group">
       <%= f.text_area :body, placeholder: "Add a comment", :class => "form-control", :rows => "3" %><br />
-      </div><%= f.submit "Add Comment", :class => "btn btn-primary" %><% end %>
+      </div>
+      <%= f.submit "Add Comment", :class => "btn btn-primary" %>
+      <% end %>
     </form>
   </div>
-</div>
+  </div>
 <%= render(partial: 'comments/comment', collection: @post.comments) %>
 <!-- LEAVE A COMMENT BOX -->
 
