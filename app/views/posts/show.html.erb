@@ -6,7 +6,7 @@
 <!-- POST INFORMATION -->
 <h1 class="mt-4"><%= @post.title %></h1>
 <!--TITLE-->
-<p class="lead">by <%= @post.user.Username %>
+<p class="lead">by <%= link_to @post.user.Username, user_path(@post.user.id) %>
 </p>
 <!--IMAGE-->
 <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">

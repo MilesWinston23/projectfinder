@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :searches
   
+  
   resources :posts do
     resources :comments
     member {post :vote}

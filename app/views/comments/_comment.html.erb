@@ -2,7 +2,7 @@
 <div class="media mb-4">
   <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
     <div class="media-body">
-      <h5 class="mt-0"><%= comment.user_id %> - Submitted <%= time_ago_in_words(comment.created_at) %> ago</h5>
+      <h5 class="mt-0"><%= comment.Username %> - Submitted <%= time_ago_in_words(comment.created_at) %> ago</h5>
         <%= comment.body %> 
     </div>
   </div>
@@ -15,6 +15,7 @@
       <!-- CHECK TO SEE IF USER SIGNED IN FOR EDIT AND DELETE-->
       <% if user_signed_in? && comment.user_id == current_user.id %>
       <%= link_to "Delete", [@post, comment], method: :delete, :class => "btn btn-primary btn-sm" %>
+      <%= link_to "Edit", edit_post_comment_path(@post, comment), :class => "btn btn-primary btn-sm", :style => "color: white" %>
       <% end %>
       <!-- CHECK TO SEE IF USER SIGNED IN FOR EDIT AND DELETE-->
       

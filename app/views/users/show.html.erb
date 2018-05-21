@@ -10,14 +10,13 @@
                   <ul class="list-group list-group-flush">
                   <% for friendship in @user.friendships %>
                     <li class="list-item">
-                      <%=h link_to friendship.friend.Username, user_path(friendship.friend.id) %>
+                      <%=h link_to friendship.friend.Username, user_path(friendship.friend_id) %>
                       
                       <% if user_signed_in? && @user.id == current_user.id %>
                       
                       (<%= link_to "remove", friendship, :method => :delete %>)
                       
                       <% end %>
-                      
                     </li>
                   <% end %>
                 </ul>
@@ -28,7 +27,7 @@
                 <ul class="list-group list-group-flush">
                   <% for user in @user.inverse_friends %>
                     <li class="list-item">
-                      <%=h link_to user.Username,  user_path(friendship.friend.id)%>
+                      <%=h link_to user.Username,  user_path(user.id) %>
                     </li>
                   <% end %>
                 </ul>
@@ -40,10 +39,14 @@
             <!--PROFILE-->
             <div class="column-md-4" id="profile">
             <div class="card" id="profile-card">
-                <%= image_tag "placehold.gif", :class => "card-img-top", :size => '200x200' %>
+                <% if @user.image.file? %>
+                  <%= image_tag @user.image.url, :class => "img-fluid" %>
+                <% else %>
+                  <%= image_tag 'placehold.gif', :class => "img-fluid"  %>
+                <% end %>
                 <div class="card-body">
                 <h5 class="card-title"><%= @user.Username %></h5>
-                <p class="card-text"><%= @user.Bio %></p>
+                <p class="card-text"><%= @user.Biography %></p>
                 </div>
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item">Email: <%= mail_to @user.email %></li>

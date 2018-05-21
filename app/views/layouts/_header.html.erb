@@ -32,9 +32,13 @@
       </li>
       <% end %>
       
+      <% if user_signed_in? %>
+      
       <li class="nav-item">
         <a class="nav-link disabled" style="color: green;">Online: <%= current_user.Username %></a>
       </li>
+      
+      <% end %>
       
     </ul>
     

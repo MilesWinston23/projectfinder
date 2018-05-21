@@ -1,34 +1,35 @@
 class CommentsController < ApplicationController
     before_action :find_commentable
 
+
     def new
       @comment = Comment.new
+    end
+    
+    def edit
+    @comment = @commentable.comments.find(params[:id])
     end
 
     def create
       if user_signed_in?
       @comment = @commentable.comments.new comment_params
       @comment.user_id=current_user.id if current_user
-      @comment.save
+      @comment.Username = current_user.Username if current_user
+          @comment.save
         redirect_to :back, notice: 'Your comment was successfully posted!'
       else
         redirect_to '/users/sign_in', notice: "Your comment wasn't posted! Please sign in!"
       end
     end
     
-    def edit
-        @comment = @commentable.comments.find(params[:id])
-    end
-    
-    def update
-        @comment = @commentable.comments.find(params[:id])
-        
-        if @comment.update(comment_params)
-        redirect_to @commentable, notice: "Your comment was successfully updated"
-        else
-        render 'index'
-        end
-    end
+   def update
+     @comment = Comment.find(params[:id])
+      if @comment.update_attributes(comment_params)
+        redirect_to @comment.commentable, notice: "Comment was updated."
+      else
+        render :edit, notice: 'Your comment was not updated!'
+      end
+   end
     
     def destroy
       @comment = Comment.find(params[:id])

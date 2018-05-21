@@ -30,8 +30,13 @@
   </div>
   
   <div class="field">
-    <%= f.label :Bio %><br />
-    <%= f.text_field :Bio, autofocus: true, autocomplete: "Bio" %>
+    <%= f.label :Biography %><br />
+    <%= f.text_field :Biography, autofocus: true, autocomplete: "Bio" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image, autofocus: true %>
   </div>
 
   <div class="field">

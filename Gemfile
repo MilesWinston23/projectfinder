@@ -28,7 +28,8 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'activerecord-reputation-system'
 #Users
 gem 'devise'
-
+#paperclip
+gem "paperclip", "~> 6.0.0"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
